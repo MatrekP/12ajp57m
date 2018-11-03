@@ -1,5 +1,6 @@
 from math import radians, sin, tan, log, e
 
+
 """ zadani vstupu """
 zobrazeni = input("Zadej zobrazeni: ")
 m = int(input("Zadej meritkove cislo: "))
@@ -10,55 +11,86 @@ if r == 0:
     r = 6371.11
 if r < 0:
     r = -r
-    print("Polomer Zeme je nyni kladny")
+    print("Polomer Zeme je nyni kladny !!!")
 
-u = -90             #zem. sirka
-v = -180            #zem. delka
+u = -90         # zem. sirka
+v = -180        # zem. delka
 
-""" vypocty """
-if zobrazeni == "A":
-    print("Marinovo zobrazeni")
+
+""" deklarace funkci """
+def marinus(r, u, m):
+    return 100000 * r * radians(u) / m
+
+def lambert(r, u, m):
+    return 100000 * r * sin(radians(u)) / m
+
+def braun(r, u, m):
+    return 100000 * 2 * r * tan(radians(u) / 2) / m
+
+def mercator(r, u, m):
+    if u == -90 or u == 90:
+        return "-"
+    return 100000 * r * log(1 / (tan(radians(u + 90) / 2)), e) / m
+
+def poledniky(r, v, m):
+    return 100000 * r * radians(v) / m
+
+
+""" rovnobezky """
+if zobrazeni == "A" or zobrazeni == "a":
+    """ Marinovo zobrazeni """
+    print("Rovnobezky: ", end="")
     while u <= 90:
-        y = (100000 * r * radians(u)) / m
+        y = marinus(r, u, m)
         u = u + 10
-        print(y)
-elif zobrazeni == "L":
-    print("Lambertovo zobrazeni")
+        if y < -100 or y > 100:
+            print("-", end=" ")
+        else:
+            print(round(y, 1), end=" ")
+elif zobrazeni == "L" or zobrazeni == "l":
+    """ Lambertovo zobrazeni """
+    print("Rovnobezky: ", end="")
     while u <= 90:
-        y = (100000 * r * sin(radians(u))) / m
+        y = lambert(r, u, m)
         u = u + 10
-        print(y)
-elif zobrazeni == "B":
-    print("Braunovo zobrazeni")
+        if y < -100 or y > 100:
+            print("-", end=" ")
+        else:
+            print(round(y, 1), end=" ")
+elif zobrazeni == "B" or zobrazeni == "b":
+    """ Braunovo zobrazeni """
+    print("Rovnobezky: ", end="")
     while u <= 90:
-        y = (100000 * 2 * r * tan(radians(u)/2)) / m
+        y = braun(r, u, m)
         u = u + 10
-        print(y)
-elif zobrazeni == "M":
-    print("Mercatorovo zobrazeni")
-    u = -80
-    while u < 0:
-        y = 100000 * r * log(1/(tan(radians(u + 90)/2)),e) / m * (-1)     # upravit
+        if y < -100 or y > 100:
+            print("-", end=" ")
+        else:
+            print(round(y, 1), end=" ")
+elif zobrazeni == "M" or zobrazeni == "m":
+    """ Mercatorovo zobrazeni """
+    print("Rovnobezky: ", end="")
+    while u <= 90:
+        y = mercator(r, -u, m)
         u = u + 10
-        # if y > -0.001:
-        #     y = 0
-        print(y)
-    while u <= 80:
-        y = 100000 * r * log(1/(tan(radians(90 - u)/2)),e) / m
-        # y = radians(90 - u)
-        # y = 1/(tan(y/2))
-        # y = log(y,e)
-        # y = 100000 * r * y / m
-        if y < 0.001:
-            y = 0
-        u = u + 10
-        print(y)
+#        if y < -100 or y > 100:            #TypeError: '<' not supported between instances of 'str' and 'int'
+#            print("-", end=" ")
+        if y == "-":
+            print(y, end=" ")
+        else:
+            print(round(y, 1), end=" ")
 else:
-    print("Chybny vstup !!!")
+    print("Chybne zobrazeni !!!")
 print()
 
-if (zobrazeni == "A") or (zobrazeni == "L") or (zobrazeni == "B") or (zobrazeni == "M"):
+
+""" poledniky """
+if zobrazeni == "A" or zobrazeni == "a" or zobrazeni == "L" or zobrazeni == "l" or zobrazeni == "B" or zobrazeni == "b" or zobrazeni == "M" or zobrazeni == "m":
+    print("Poledniky: ", end="")
     while v <= 180:
-        x = (100000 * r * radians(v)) / m
+        x = poledniky(r, v, m)
         v = v + 10
-        print(x)
+        if x < -100 or x > 100:
+            print("-", end=" ")
+        else:
+            print(round(x, 1), end=" ")
