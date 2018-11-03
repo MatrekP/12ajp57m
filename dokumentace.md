@@ -15,6 +15,7 @@ Uživatel vybere `zobrazení` zadáním jednoho písmena z následujících mož
 - `L` - Lambertovo zobrazení
 - `B` - Braunovo zobrazení 
 - `M` - Mercatorovo zobrazení 
+
 Dále uživatel zadá měřítkové číslo `m` (přirozené číslo) a poloměr referenční koule Země `r` v km (kladné reálné číslo). Pokud uživatel zadá poloměr 0, bude počítáno s poloměrem 6371,11 km.
 
 Program se po vypsání souřadnic rovnoběžek a poledníků zeptá na zeměpisnou šířku a délku ve stupních pro výpočet souřadnice bodu.
@@ -23,9 +24,10 @@ Zadáním zeměpisné šířky `0` a zeměpisné délky `0` program skončí.
 ## Výstup
 Program pro korektní vstup vypíše vypočtené souřadnice rovnoběžek a poledníků v cm s přesností na desetiny pro zadané zobrazení, měřítko a poloměr referenční koule. 
 Pokud některá vzdálenost od souřadnice (0, 0) překročí 1 m, program vypíše `-`.
+Program pro správně zadanou zeměpisnou šířku a délku bodu vypíše vypočtené souřadnice.
 
 ## Popis činnosti programu
-Program se zeptá uživatele na jedno ze zobrazení, měřítkové číslo a polomer referencni koule a ověří správnost vstupu. Pokud uživatel zadá korektní vstup, program vypočítá a vypíše souřadnice rovnoběžek a poledníků na svislé, resp. vodorovné ose. V opačném případě program napíše chybovou hlášku a skončí.
+Program se zeptá uživatele na jedno ze zobrazení, měřítkové číslo a poloměr referenční koule a ověří správnost vstupu. Pokud uživatel zadá korektní vstup, program vypočítá a vypíše souřadnice rovnoběžek a poledníků na svislé, resp. vodorovné ose. V opačném případě program napíše chybovou hlášku a skončí.
 Program se dále zeptá na zeměpisnou šířku a délku bodu a vypočte jeho přepočtené souřadnice. Pokud uživatel zadá špatné souřadnice bodu, program napíše chybovou hlášku a čeká na opravu.
 
 ### Příklad běhu programu
@@ -47,4 +49,5 @@ y  0.0
 
 ### Chybové hlášky
 `CHYBNY VSTUP !!!` - uživatel zadal nepodporované zobrazení, měřítkové číslo či poloměr Země.
+
 `CHYBNA ZEMEPISNA SOURADNICE !!!` - uživatel zadal nekorektní vstup pro výpočet souřadnic bodu 
