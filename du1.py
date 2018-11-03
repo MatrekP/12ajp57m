@@ -1,19 +1,20 @@
 from math import radians, sin, tan, log, e
 
+
 # funkce
 # pro jednotliva tecna valcova zobrazeni
 def rovnobezky(r, u, m):
-    if zobrazeni == "A":            # Marinovo zobrazeni
+    if zobrazeni in ("A", "a"):            # Marinovo zobrazeni
         return 100000 * r * radians(u) / m
-    elif zobrazeni == "L":          # Lambertovo zobrazeni
+    elif zobrazeni in ("L", "l"):          # Lambertovo zobrazeni
         return 100000 * r * sin(radians(u)) / m
-    elif zobrazeni == "B":          # Braunovo zobrazeni
+    elif zobrazeni in ("B", "b"):          # Braunovo zobrazeni
         return 100000 * 2 * r * tan(radians(u) / 2) / m
-    elif zobrazeni == "M":          # Mercatorovo zobrazeni
+    elif zobrazeni in ("M", "m"):          # Mercatorovo zobrazeni
         if u == -90 or u == 90:
             return "-"
         else:
-            return 100000 * r * log(1 / (tan(radians(u + 90) / 2)), e) / m
+            return 100000 * r * log(1 / (tan(radians(90 - u) / 2)), e) / m
 
 
 # funkce pocitajici polohu poledniku
@@ -30,31 +31,51 @@ if r == 0:
     r = 6371.11
 
 
-# deklarace promennych pro vzorce zobrazeni
-u = -90         # zem. sirka
-v = -180        # zem. delka
-
-
 # zjisteni spravnosti vstupu a vypis vypoctu zobrazeni
-if m > 0 and r > 0 and zobrazeni in ("A", "L", "B", "M"):
+if m > 0 and r > 0 and zobrazeni in ("A", "a", "L", "l", "B", "b", "M", "m"):
+    u = -90         # zemepisna sirka
+    v = -180        # zemepisna delka
     print("Rovnobezky:", end=" ")
     for i in range(-90, 100, 10):
         y = rovnobezky(r, u, m)
-        u = u + 10
         if y == "-":
             print(y, end=" ")
         elif y < -100 or y > 100:
             print("-", end=" ")
         else:
             print(round(y, 1), end=" ")
+        u = u + 10
     print()
     print("Poledniky:", end=" ")
     for i in range(-180, 190, 10):
         x = poledniky(r, v, m)
-        v = v + 10
         if x < -100 or x > 100:
             print("-", end=" ")
         else:
             print(round(x, 1), end=" ")
+        v = v + 10
+    print()
+
+    # zadani a vypocet souradnic bodu
+    bod_u = None
+    bod_v = None
+    while bod_u != 0 or bod_v != 0:
+        bod_u = float(input("Zadej zemepisnou sirku: "))
+        bod_v = float(input("Zadej zemepisnou delku: "))
+        if -90 <= bod_u <= 90 and -180 <= bod_v <= 180:
+            y = rovnobezky(r, bod_u, m)
+            if y == "-":
+                print("x ", y)
+            elif y < -100 or y > 100:
+                print("x ", "-")
+            else:
+                print("x ", round(y, 1))
+            x = poledniky(r, bod_v, m)
+            if x < -100 or x > 100:
+                print("y ", "-")
+            else:
+                print("y ", round(x, 1))
+        else:
+            print("CHYBNA ZEMEPISNA SOURADNICE !!!")
 else:
-    print("Chybny vstup !!!")
+    print("CHYBNY VSTUP !!!")
