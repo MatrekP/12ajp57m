@@ -9,7 +9,7 @@ Klášter u Nepomuka
 Program počítá polohu jednotlivých poledníků a rovnoběžek pro vybrané měřítko, poloměr referenční koule a zvolené tečné válcové zobrazení (Marinovo, Lambertovo, Braunovo či Mercatorovo). Rovnoběžky i poledníky se vypočítávají po 10 stupních.
 Program počítá souřadnice bodů určných zeměpisnou délkou a šířkou.
 
-## Vstup
+### Vstup
 Uživatel vybere `zobrazení` zadáním jednoho písmena z následujících možností:
 - `A` - Marinovo zobrazení 
 - `L` - Lambertovo zobrazení
@@ -21,7 +21,7 @@ Dále uživatel zadá měřítkové číslo `m` (přirozené číslo) a poloměr
 Program se po vypsání souřadnic rovnoběžek a poledníků zeptá na zeměpisnou šířku a délku ve stupních pro výpočet souřadnice bodu.
 Zadáním zeměpisné šířky `0` a zeměpisné délky `0` program skončí.
 
-## Výstup
+### Výstup
 Program pro korektní vstup vypíše vypočtené souřadnice rovnoběžek a poledníků v cm s přesností na desetiny pro zadané zobrazení, měřítko a poloměr referenční koule. 
 Pokud některá vzdálenost od souřadnice (0, 0) překročí 1 m, program vypíše `-`.
 
