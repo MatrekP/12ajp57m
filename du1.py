@@ -1,9 +1,14 @@
 from math import radians, sin, tan, log, e
 
 
-# funkce
-# pro jednotliva tecna valcova zobrazeni
 def rovnobezky(r, u, m):
+    """
+    Funkce pocita polohu rovnobezek pro jednotliva tecna valcova zobrazeni.
+    :param r: polomer referencni koule
+    :param u: zemepisna sirka
+    :param m: meritkove cislo
+    :return: vzdalenost na svisle ose
+    """
     if zobrazeni in ("A", "a"):            # Marinovo zobrazeni
         return 100000 * r * radians(u) / m
     elif zobrazeni in ("L", "l"):          # Lambertovo zobrazeni
@@ -17,9 +22,14 @@ def rovnobezky(r, u, m):
             return 100000 * r * log(1 / (tan(radians(90 - u) / 2)), e) / m
 
 
-# funkce pocitajici polohu poledniku
-# pocitano pro vsechna zobrazeni stejne
 def poledniky(r, v, m):
+    """
+    Funkce pocita polohu poledniku. Pocitano pro vsechna zobrazeni stejne.
+    :param r: polomer referencni koule
+    :param v: zemepisna delka
+    :param m: meritkove cislo
+    :return: vzdalenost na vodorovne ose
+    """
     return 100000 * r * radians(v) / m
 
 
@@ -31,10 +41,12 @@ if r == 0:
     r = 6371.11
 
 
-# zjisteni spravnosti vstupu a vypis vypoctu zobrazeni
+# zjisteni spravnosti vstupu
 if m > 0 and r > 0 and zobrazeni in ("A", "a", "L", "l", "B", "b", "M", "m"):
     u = -90         # zemepisna sirka
     v = -180        # zemepisna delka
+
+    # volani funkci a vypis souradnic rovnobezek
     print("Rovnobezky:", end=" ")
     for i in range(-90, 100, 10):
         y = rovnobezky(r, u, m)
@@ -46,6 +58,8 @@ if m > 0 and r > 0 and zobrazeni in ("A", "a", "L", "l", "B", "b", "M", "m"):
             print(round(y, 1), end=" ")
         u = u + 10
     print()
+
+    # volani funkci a vypis souradnic poledniku
     print("Poledniky:", end=" ")
     for i in range(-180, 190, 10):
         x = poledniky(r, v, m)
