@@ -7,7 +7,7 @@ Klášter u Nepomuka
 
 ## Popis programu
 Program počítá polohu jednotlivých poledníků a rovnoběžek pro vybrané měřítko, poloměr referenční koule a zvolené tečné válcové zobrazení (Marinovo, Lambertovo, Braunovo či Mercatorovo). Rovnoběžky i poledníky se vypočítávají po 10 stupních.
-Program počítá souřadnice bodů určných zeměpisnou délkou a šířkou.
+Program počítá souřadnice bodů určených zeměpisnou délkou a šířkou.
 
 ### Vstup
 Uživatel vybere `zobrazení` zadáním jednoho písmena z následujících možností:
