@@ -24,10 +24,12 @@ Zadáním zeměpisné šířky `0` a zeměpisné délky `0` program skončí.
 ## Výstup
 Program pro korektní vstup vypíše vypočtené souřadnice rovnoběžek a poledníků v cm s přesností na desetiny pro zadané zobrazení, měřítko a poloměr referenční koule. 
 Pokud některá vzdálenost od souřadnice (0, 0) překročí 1 m, program vypíše `-`.
+
 Program pro správně zadanou zeměpisnou šířku a délku bodu vypíše vypočtené souřadnice.
 
 ## Popis činnosti programu
 Program se zeptá uživatele na jedno ze zobrazení, měřítkové číslo a poloměr referenční koule a ověří správnost vstupu. Pokud uživatel zadá korektní vstup, program vypočítá a vypíše souřadnice rovnoběžek a poledníků na svislé, resp. vodorovné ose. V opačném případě program napíše chybovou hlášku a skončí.
+
 Program se dále zeptá na zeměpisnou šířku a délku bodu a vypočte jeho přepočtené souřadnice. Pokud uživatel zadá špatné souřadnice bodu, program napíše chybovou hlášku a čeká na opravu.
 
 ### Příklad běhu programu
